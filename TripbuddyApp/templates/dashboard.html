@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="alert alert-dark">
+        <button><a href='/logout' class="alert-link">Logout</a></button> <button><a href="/trips/new" class="alert-link">Create a New Trip!</a></button>
+    </div>
+    
+    <h1>Hello {{user.first_name}}!</h1>
+    </br>
+    <h4>Your trips:</h4>
+    </br>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trip in user.trips.all %}
+            <tr>
+                <td>{{trip.destination}}</td>
+                <td>{{trip.start_date|date:"SHORT_DATE_FORMAT"}}</td>
+                <td>{{trip.end_date|date:"SHORT_DATE_FORMAT"}}</td>
+                <td>{{trip.plan}}</td>
+                <td><a href='/trips/{{ trip.id }}/'>Trip</a> | <a href='/trips/edit/{{ trip.id }}'>Edit</a> | <a href='/{{ trip.id }}/delete'>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </form>
+
+</body>
+</html>
+
+
+</body>
+</html>

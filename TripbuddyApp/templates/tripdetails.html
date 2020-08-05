@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Trip Details</title>
+</head>
+<body>
+<div class="alert alert-dark" role="alert">
+    <button><a href="/dashboard" class="alert-link">Dashboard</a></button> <button><a href='/logout' class="alert-link">Logout</a></button>
+</div>
+    <h1>Hello {{user.first_name}}! Read about your trip!</h1>
+</br>
+    <h5>{{trip.destination}}</h5>
+    
+        <p>Start Date: {{trip.start_date|date:"SHORT_DATE_FORMAT"}}</p>
+        <p>End Date: {{trip.end_date|date:"SHORT_DATE_FORMAT"}}</p>
+        <p>Created on: {{trip.created_at}}</p>
+        <p>Last Updated: {{trip.updated_at}}</p>
+        <p>Plan: {{trip.plan}}</p>
+        <p>Created by: {{user.first_name}}</p>
+        </br>
+   
+    <div class="alert alert-dark" role="alert">
+        <button><a href="/trips/edit/{{ trip.id }}" class="alert-link">Edit</a></button><button><a href="/{{ trip.id }}/delete" class="alert-link">Delete</a></button>
+    </div>
+
+</body>
+</html>

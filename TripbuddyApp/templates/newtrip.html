@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>New Trip</title>
+</head>
+<body>
+    <div class="alert alert-dark">
+        <button><a href='/logout' class="alert-link">Logout</a></button> 
+    </div>
+    <h1>Hello {{user.first_name}}! Create a trip!</h1>
+</br>
+    <form action='/create' method='post'>
+        {% csrf_token %}
+        <div class='newdata'>
+            <label for='destination'>Destination:</label>
+            <input type='text' name='destination' id='destination' class='newdata'>
+        
+        <div class='newdata'>
+            <label for='start_date'>Start Date:</label>
+            <input type='date' name='start_date' id='start_date' class='newdata'>
+        </div>
+        
+        <div class='newdata'>
+            <label for='end_date'>End Date:</label>
+            <input type='date' name='end_date' id='end_date' class='newdata'>
+        </div>
+        
+        <div class='newdata'>
+            <label for='plan'>Plan</label>
+            <textarea name='plan' id='plan' cols='60' rows='5' class='newdata'></textarea>
+        </div>
+        
+    </form>
+    <div class="alert alert-dark" role="alert">
+        <button class="alert-link">Submit</button>
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+<div class="alert alert-dark" role="alert">
+    <button href='/cancel' class="alert-link">Cancel</button>
+</div>
+</body>
+</html>
